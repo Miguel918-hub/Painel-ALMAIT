@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rk Hub | IA Oficial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007acc;
+            --primary-hover: #0099ff;
+            --background-dark: #1a1a1a;
+            --background-light: #2c2c2c;
+            --background-input: #3a3a3a;
+            --text-color: #f0f0f0;
+            --accent-color: #00aeff;
+            --error-color: #ff4d4d;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: var(--text-color);
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body.no-select {
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            width: 380px;
+            padding: 40px;
+            background-color: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease-in-out;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .container h1 {
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container .input-group { position: relative; margin-bottom: 20px; }
+        .container input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid var(--background-input);
+            border-radius: 10px;
+            background-color: var(--background-input);
+            color: var(--text-color);
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+        .container input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 122, 204, 0.6);
+        }
+
+        .action-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-hover));
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 122, 204, 0.4);
+            margin-top: 10px;
+        }
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 153, 255, 0.5);
+        }
+
+        #error-message, #register-error-message {
+            color: var(--error-color);
+            margin-top: 15px;
+            height: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .captcha-group {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: var(--background-light);
+            border-radius: 8px;
+        }
+        .captcha-group label {
+            font-size: 0.9em;
+            color: var(--accent-color);
+        }
+        .captcha-group input {
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .form-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-top: 15px;
+            display: inline-block;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .form-link:hover {
+            text-decoration: underline;
+        }
+        
+        #chat-wrapper{width:600px;height:95vh;max-height:800px;display:flex;justify-content:center;align-items:center}.chat-container{width:100%;height:100%;border:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column;border-radius:15px;overflow:hidden;background-color:rgba(44,44,44,0.85);backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,0.6)}.chat-header{display:flex;align-items:center;padding:15px 25px;background-color:rgba(26,26,26,0.9);border-bottom:1px solid rgba(255,255,255,0.1);justify-content:space-between}.header-info{display:flex;align-items:center;gap:15px}.header-logo{width:45px;height:45px;border-radius:50%;object-fit:cover;border:2px solid var(--primary-color)}.header-title{font-size:1.3em;font-weight:600;color:var(--accent-color)}#logout-button{padding:8px 16px;background-color:#d14a4a;color:white;border:none;border-radius:10px;cursor:pointer;font-size:0.9em;font-weight:500;transition:all .3s ease}#logout-button:hover{background-color:#e06868;box-shadow:0 0 12px rgba(209,74,74,0.6)}.chat-messages{flex:1;padding:25px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}.chat-messages::-webkit-scrollbar{width:8px}.chat-messages::-webkit-scrollbar-track{background:var(--background-light)}.chat-messages::-webkit-scrollbar-thumb{background:#555;border-radius:4px}.chat-messages::-webkit-scrollbar-thumb:hover{background:#777}.message{display:flex;flex-direction:column;max-width:85%;word-wrap:break-word;line-height:1.6;animation:slideIn .4s ease-out;position:relative}.message-content{padding:12px 20px;border-radius:22px}.message.sent{align-self:flex-end}.message.sent .message-content{background:linear-gradient(45deg,var(--primary-color),var(--primary-hover));color:white;border-bottom-right-radius:6px}.message.received{align-self:flex-start}.message.received .message-content{background-color:#3a3d41;border-bottom-left-radius:6px}.message.received pre{background-color:var(--background-dark);padding:15px;margin-top:10px;border-radius:10px;overflow-x:auto;white-space:pre-wrap;border:1px solid #111;box-shadow:0 2px 10px rgba(0,0,0,0.4)}.message.received code{font-family:'Consolas','Courier New',monospace;font-size:0.95em;color:#9cdcfe}.message-actions{display:flex;gap:8px;margin-top:8px}.message.received .message-actions{justify-content:flex-start}.message.sent .message-actions{justify-content:flex-end}.message-button{background-color:#4f545c;color:var(--text-color);border:none;padding:5px 12px;border-radius:15px;cursor:pointer;font-size:0.8em;transition:background-color .2s}.message-button:hover{background-color:#6a717c}.chat-input{display:flex;padding:20px;gap:12px;align-items:center;border-top:1px solid rgba(255,255,255,0.1)}.chat-input input{flex:1;padding:14px 22px;border:1px solid var(--background-input);border-radius:30px;background-color:var(--background-input);color:var(--text-color);outline:none;transition:all .3s ease;font-size:1em}.chat-input input:focus{border-color:var(--primary-color)}.send-button{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border:none;background:linear-gradient(45deg,var(--primary-color),var(--primary-hover));color:white;border-radius:50%;cursor:pointer;transition:all .3s ease}.send-button:hover{transform:scale(1.1);box-shadow:0 0 18px rgba(0,153,255,0.6)}.send-button svg{width:26px;height:26px}body.device-mobile #login-container,body.device-mobile #register-container{width:85vw;padding:40px 25px}body.device-mobile #chat-wrapper{width:100vw;height:100vh;max-height:none;border-radius:0}body.device-mobile .chat-container{border-radius:0;height:100%}body.device-mobile .header-title{font-size:1.1em}body.device-mobile .chat-messages{padding:15px}body.device-mobile .chat-input{padding:15px}
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="no-select">
+
+    <div id="device-selector" class="container">
+        <h1>Selecione seu Dispositivo</h1>
+        <button id="desktop-button" class="action-button">Computador</button>
+        <button id="mobile-button" class="action-button">Celular</button>
+    </div>
+
+    <div id="login-container" class="container hidden">
+        <h1>Rk Hub | IA Oficial</h1>
+        <div class="input-group">
+            <input type="text" id="username-input" placeholder="Usuário">
+        </div>
+        <div class="input-group">
+            <input type="password" id="password-input" placeholder="Senha">
+        </div>
+        <div class="captcha-group">
+            <label id="login-captcha-label">Resolva para continuar:</label>
+            <input type="number" id="login-captcha-input" placeholder="Resultado">
+        </div>
+        <button id="login-button" class="action-button">Entrar</button>
+        <p id="error-message"></p>
+        <a id="show-register-link" class="form-link">Não tem uma conta? Cadastre-se</a>
+    </div>
+
+    <div id="register-container" class="container hidden">
+        <h1>Crie sua Conta</h1>
+        <div class="input-group">
+            <input type="text" id="register-username-input" placeholder="Escolha um usuário">
+        </div>
+        <div class="input-group">
+            <input type="password" id="register-password-input" placeholder="Crie uma senha">
+        </div>
+        <div class="captcha-group">
+            <label id="register-captcha-label">Resolva para continuar:</label>
+            <input type="number" id="register-captcha-input" placeholder="Resultado">
+        </div>
+        <button id="register-button" class="action-button">Cadastrar</button>
+        <p id="register-error-message"></p>
+        <a id="show-login-link" class="form-link">Já tem uma conta? Faça login</a>
+    </div>
+
+    <div id="chat-wrapper" class="hidden">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="header-info">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAEgASADASIAAhEBAxEB/8QAHAAAAQUBAQEAAAAAAAAAAAAAAwECBAUGBwAI/8QAUBAAAgEDAgQDBAcDBgoGCwEAAQIDAAQRBSEGEjFBBxNRYSIyUnGBFCRCobFSYnOCkaLR0uEVM0RTdJOywvAksuJDRFRjc4OTJSY1ZHSUwv/EABoBAQEBAQEBAQAAAAAAAAAAAAABAgMEBgX/xAAxEQEAAgIBAgQDBwUBAQEAAAAAAQIDERIEITFBURMUImFxkaHwMsHRFUIjNFKx4UL/2gAMAwEAAhEDEQA/APyH5lT1T+ZU/U+gq/wDqN+r6l/zKoeZU9U/mVP1B/wBRv1fUv+ZU9U/mVP1PoL/qN+r6l/zKnqn8yp+oP+o36vqX/MqeqfzKn6g/6jfq+r6l/zKnqn8yp+oP+o36vqX/MqeqfzKn6g/6jfq+r6l/zKnqn8yp+oP+o36vqX/MqeqfzKn6g/6jfq+r6l/zKnqn8yp+oP+o36vqX/MqeqfzKn6g/6jfq+r6l/zKnqn8yp+oP+o36vqX/MqeqfzKn6g/6jfq+r6l/zKnqn8yp+oP+o36vqX/MqeqfzKn6g/6jfq+r6l/zKnqn8yp+oP+o36vqX/MqeqfzKn6g/6jfq+r6l/zKnqn8yp+oP+o36vqX/MqeqfzKn6gD/AKjfq+oIeo9B6D/qN+r6gg6j0HoP+o36vqCDqPQeg/6jfq+oIOo9B6D/AKjfq+oIOo9B6D/qN+r6gg6j0HoP+o36vqCDqPQeg/6jfq+oIOo9B6D/qN+r6gg6M9B6D/qN+r6gg6j0HoP+o36vqCDqPQeg/6jfq+oIOo9B6D/qN+r6gg6j0HoP+o36vqCDqPQeg/6jfq+oIOo9B6D/qN+r6gg6j0HoP+o36vqCDqPQeg/6jfq+oIOo9B6D/qN+r6gggo9BR6j1Fe f/3H9UUV9R6iigoooKKKKCiiigoooKKKKCiiigoooKKKKCiiigoooKKKKCiiigoooKKKKCiiigoooKKKKCgoqfUV5/wBw/VFH oH o9BFe f/AHH9UUV9R6iigoooKKKKCiiigoooKKKKCiiigoooKKKKCiiigoooKKKKCiiigoooKKKKCiiigoooKKKKCij1HqK8/wC4fqgo9B6Cj1HqK8/7j+qCvqPUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUV5/3H9UFHoPUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUV5/3H9UFHoPUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUV5/3H9UFHoPUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUV5/3H9UEdB6j1HqK837iCvqPUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUEHqPUUUUH/9k=" alt="Logo Rk Hub" class="header-logo">
+                    <span class="header-title">Rk Hub | IA Oficial</span>
+                </div>
+                <button id="logout-button">Sair</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <!-- As mensagens do chat aparecem aqui -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Converse com a Rk Hub | IA Oficial...">
+                <button class="send-button" id="send-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Medidas Anti-Cópia ---
+            document.addEventListener('contextmenu', event => event.preventDefault());
+            document.addEventListener('keydown', e => {
+                if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85) || (e.ctrlKey && e.keyCode === 83)) {
+                    e.preventDefault();
+                }
+            });
+
+            // --- Seletores de Elementos ---
+            const deviceSelector = document.getElementById('device-selector');
+            const loginContainer = document.getElementById('login-container');
+            const registerContainer = document.getElementById('register-container');
+            const chatWrapper = document.getElementById('chat-wrapper');
+            const desktopButton = document.getElementById('desktop-button');
+            const mobileButton = document.getElementById('mobile-button');
+            const usernameInput = document.getElementById('username-input');
+            const passwordInput = document.getElementById('password-input');
+            const loginButton = document.getElementById('login-button');
+            const errorMessage = document.getElementById('error-message');
+            const registerUsernameInput = document.getElementById('register-username-input');
+            const registerPasswordInput = document.getElementById('register-password-input');
+            const registerButton = document.getElementById('register-button');
+            const registerErrorMessage = document.getElementById('register-error-message');
+            const showRegisterLink = document.getElementById('show-register-link');
+            const showLoginLink = document.getElementById('show-login-link');
+            const logoutButton = document.getElementById('logout-button');
+            const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-button');
+            const chatMessages = document.getElementById('chat-messages');
+
+            // --- Seletores do CAPTCHA ---
+            const loginCaptchaLabel = document.getElementById('login-captcha-label');
+            const loginCaptchaInput = document.getElementById('login-captcha-input');
+            const registerCaptchaLabel = document.getElementById('register-captcha-label');
+            const registerCaptchaInput = document.getElementById('register-captcha-input');
+
+            let captchaAnswer = 0;
+            
+             // --- Códigos Lua ---
+            const codeSnippets = {
+                'ajuda': 'Comandos disponíveis: criar part, kill brick, velocidade, gui completa, evento de toque.',
+                'criar part': `--[[...código para criar part...]]`,
+                'kill brick': `--[[...código para kill brick...]]`,
+                'velocidade': `--[[...código para velocidade...]]`,
+                'gui completa': `--[[...código para gui completa...]]`,
+                'evento de toque': `--[[...código para evento de toque...]]`,
+            };
+
+            // --- Funções de CAPTCHA ---
+            function generateCaptcha(labelElement) {
+                const num1 = Math.floor(Math.random() * 10) + 1;
+                const num2 = Math.floor(Math.random() * 10) + 1;
+                captchaAnswer = num1 + num2;
+                labelElement.textContent = `Quanto é ${num1} + ${num2}?`;
+            }
+            function validateCaptcha(inputElement) {
+                return parseInt(inputElement.value, 10) === captchaAnswer;
+            }
+
+            // --- Funções de UI ---
+            function showScreen(screen) {
+                deviceSelector.classList.add('hidden');
+                loginContainer.classList.add('hidden');
+                registerContainer.classList.add('hidden');
+                chatWrapper.classList.add('hidden');
+                screen.classList.remove('hidden');
+                
+                if (screen === loginContainer) {
+                    generateCaptcha(loginCaptchaLabel);
+                    loginCaptchaInput.value = '';
+                } else if (screen === registerContainer) {
+                    generateCaptcha(registerCaptchaLabel);
+                    registerCaptchaInput.value = '';
+                }
+            }
+            
+            function setupDevice(deviceType) {
+                document.body.classList.add(`device-${deviceType}`);
+                localStorage.setItem('deviceType', deviceType);
+                if (localStorage.getItem('isLoggedIn') === 'true') {
+                    showScreen(chatWrapper);
+                     if (chatMessages.childElementCount === 0) {
+                        displayMessage('Olá! Eu sou a <b>Rk Hub | IA Oficial</b>. Peça-me um código Lua para Roblox. Digite "ajuda" para ver os comandos.', 'received');
+                    }
+                } else {
+                    showScreen(loginContainer);
+                }
+            }
+
+            // --- Lógica de Autenticação ---
+            function handleRegister() {
+                if (!validateCaptcha(registerCaptchaInput)) {
+                    registerErrorMessage.textContent = 'Resposta do CAPTCHA incorreta.';
+                    generateCaptcha(registerCaptchaLabel);
+                    registerCaptchaInput.value = '';
+                    return;
+                }
+                const user = registerUsernameInput.value.trim();
+                const pass = registerPasswordInput.value.trim();
+                if (!user || !pass) {
+                    registerErrorMessage.textContent = 'Usuário e senha são obrigatórios.';
+                    return;
+                }
+                localStorage.setItem('user', user);
+                localStorage.setItem('password', pass); 
+                alert('Conta criada com sucesso! Faça o login para continuar.');
+                showScreen(loginContainer);
+            }
+
+            function handleLogin() {
+                if (!validateCaptcha(loginCaptchaInput)) {
+                    errorMessage.textContent = 'Resposta do CAPTCHA incorreta.';
+                    generateCaptcha(loginCaptchaLabel);
+                    loginCaptchaInput.value = '';
+                    return;
+                }
+                const user = usernameInput.value.trim();
+                const pass = passwordInput.value.trim();
+                const storedUser = localStorage.getItem('user');
+                const storedPass = localStorage.getItem('password');
+
+                if (user === storedUser && pass === storedPass) {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    showScreen(chatWrapper);
+                     if (chatMessages.childElementCount === 0) {
+                        displayMessage('Olá! Eu sou a <b>Rk Hub | IA Oficial</b>. Peça-me um código Lua para Roblox. Digite "ajuda" para ver os comandos.', 'received');
+                    }
+                } else {
+                    errorMessage.textContent = 'Usuário ou senha inválidos.';
+                }
+            }
+
+            function handleLogout() {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('deviceType');
+                location.reload();
+            }
+
+            // --- Funções do Chat ---
+            const getBotResponse = (userInput) => {
+                const lowerInput = userInput.toLowerCase().trim();
+                for (const keyword in codeSnippets) {
+                    if (lowerInput.includes(keyword)) {
+                         return `<pre><code>${codeSnippets[keyword].replace(/</g, "<").replace(/>/g, ">")}</code></pre>`;
+                    }
+                }
+                return "Desculpe, não entendi o pedido. Tente 'ajuda' para ver a lista de comandos.";
+            };
+
+            const displayMessage = (content, type) => {
+                const messageWrapper = document.createElement('div');
+                messageWrapper.classList.add('message', type);
+                const messageContent = document.createElement('div');
+                messageContent.classList.add('message-content');
+                messageContent.innerHTML = content;
+                messageWrapper.appendChild(messageContent);
+                chatMessages.appendChild(messageWrapper);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            };
+
+            const handleSendMessage = () => {
+                const userText = messageInput.value.trim();
+                if (!userText) return;
+                displayMessage(userText, 'sent');
+                messageInput.value = '';
+                setTimeout(() => {
+                    const botResponse = getBotResponse(userText);
+                    displayMessage(botResponse, 'received');
+                }, 600);
+            };
+
+            // --- Event Listeners ---
+            desktopButton.addEventListener('click', () => setupDevice('desktop'));
+            mobileButton.addEventListener('click', () => setupDevice('mobile'));
+            
+            loginButton.addEventListener('click', handleLogin);
+            passwordInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleLogin(); });
+
+            registerButton.addEventListener('click', handleRegister);
+            registerPasswordInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleRegister(); });
+
+            logoutButton.addEventListener('click', handleLogout);
+
+            sendButton.addEventListener('click', handleSendMessage);
+            messageInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendMessage(); });
+
+            showRegisterLink.addEventListener('click', () => showScreen(registerContainer));
+            showLoginLink.addEventListener('click', () => showScreen(loginContainer));
+
+            // --- Rota Inicial ---
+            const savedDevice = localStorage.getItem('deviceType');
+            if (savedDevice) {
+                setupDevice(savedDevice);
+            } else {
+                showScreen(deviceSelector);
+            }
+        });
+    </script>
+</body>
+</html>
