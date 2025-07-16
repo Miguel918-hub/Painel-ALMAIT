@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rk Hub | IA Oficial v2.6 (Interface VIP)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007acc;
+            --primary-hover: #0099ff;
+            --background-dark: #1a1a1a;
+            --background-light: #2c2c2c;
+            --background-input: #3a3a3a;
+            --text-color: #f0f0f0;
+            --accent-color: #00aeff;
+            --error-color: #ff4d4d;
+            --admin-color: #e6a23c;
+            --vip-color: #d678f1;
+        }
+
+        /* --- ESTILOS GERAIS --- */
+        body{font-family:'Poppins',sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:var(--text-color);margin:0;overflow:hidden}body.no-select{-webkit-user-select:none;-ms-user-select:none;user-select:none}@keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.container{width:380px;padding:40px;background-color:rgba(26,26,26,0.85);backdrop-filter:blur(10px);border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.6);text-align:center;border:1px solid rgba(255,255,255,0.1);transition:all .4s ease-in-out;animation:slideIn .5s ease-out}.container h1{color:var(--accent-color);margin-bottom:30px;font-weight:700;letter-spacing:1px}.container .input-group{position:relative;margin-bottom:20px}.container input{width:100%;padding:14px 20px;border:1px solid var(--background-input);border-radius:10px;background-color:var(--background-input);color:var(--text-color);box-sizing:border-box;transition:all .3s ease;font-size:1em}.container input:focus{outline:none;border-color:var(--primary-color);box-shadow:0 0 15px rgba(0,122,204,0.6)}.action-button{width:100%;padding:14px;border:none;background:linear-gradient(45deg,var(--primary-color),var(--primary-hover));color:white;border-radius:10px;cursor:pointer;font-weight:600;font-size:1.1em;transition:all .3s ease;box-shadow:0 5px 20px rgba(0,122,204,0.4);margin-top:10px}.action-button:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,153,255,0.5)}
+        
+        /* --- ESTILOS DO CHAT --- */
+        #chat-wrapper{width:600px;height:95vh;max-height:800px;display:flex;justify-content:center;align-items:center}.chat-container{width:100%;height:100%;border:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column;border-radius:15px;overflow:hidden;background-color:rgba(44,44,44,0.85);backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,0.6)}.chat-header{display:flex;align-items:center;padding:15px 25px;background-color:rgba(26,26,26,0.9);border-bottom:1px solid rgba(255,255,255,0.1);justify-content:space-between;flex-wrap:wrap;gap:10px;}.header-info{display:flex;align-items:center;gap:15px}.header-logo{width:45px;height:45px;border-radius:50%;object-fit:cover;border:2px solid var(--primary-color)}.header-title{font-size:1.3em;font-weight:600;color:var(--accent-color)}#logout-button{padding:8px 16px;background-color:#d14a4a;color:white;border:none;border-radius:10px;cursor:pointer;font-size:0.9em;font-weight:500;transition:all .3s ease}#logout-button:hover{background-color:#e06868;box-shadow:0 0 12px rgba(209,74,74,0.6)}
+        .chat-messages{flex:1;padding:25px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}.chat-messages::-webkit-scrollbar{width:8px}.chat-messages::-webkit-scrollbar-track{background:var(--background-light)}.chat-messages::-webkit-scrollbar-thumb{background:#555;border-radius:4px}.message{display:flex;flex-direction:column;max-width:85%;word-wrap:break-word;line-height:1.6;animation:slideIn .4s ease-out;position:relative}.message-content{padding:12px 20px;border-radius:22px}.message.sent{align-self:flex-end}.message.sent .message-content{background:linear-gradient(45deg,var(--primary-color),var(--primary-hover));color:white;border-bottom-right-radius:6px}.message.received{align-self:flex-start}.message.received .message-content{background-color:#3a3d41;border-bottom-left-radius:6px}.message.received code{font-family:'Consolas','Courier New',monospace;background-color:var(--background-dark);padding:2px 5px;border-radius:4px;}
+        .chat-input{display:flex;padding:20px;gap:12px;align-items:center;border-top:1px solid rgba(255,255,255,0.1)}.chat-input input{flex:1;padding:14px 22px;border:1px solid var(--background-input);border-radius:30px;background-color:var(--background-input);color:var(--text-color);outline:none;transition:all .3s ease;font-size:1em}.chat-input input:focus{border-color:var(--primary-color)}
+
+        /* --- BOTÃO DE ENVIO RAINBOW --- */
+        @keyframes rainbow-bg { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+        .send-button{ display:flex; align-items:center; justify-content:center; width:52px; height:52px; border:none; border-radius:50%; cursor:pointer; transition:all .3s ease; background: linear-gradient(90deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3); background-size: 400% 400%; animation: rainbow-bg 10s ease infinite; font-size: 2.5em; line-height: 52px; color: white; font-weight: bold; }
+        .send-button:hover{ transform:scale(1.1); box-shadow:0 0 18px rgba(255,255,255,0.4); }
+
+        /* --- MENU DE ESCOLHA DE IA E OUTROS --- */
+        #change-ai-btn { background-color: var(--background-input); padding: 8px 12px; border: 1px solid #444; border-radius: 8px; color: var(--text-color); cursor: pointer; transition: all 0.2s; }
+        #change-ai-btn:hover { background-color: var(--primary-color); border-color: var(--primary-hover); }
+        #ai-choice-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(8px); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1001; text-align: center; }
+        #ai-choice-modal { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;}
+        .ai-choice-card { background-color: var(--background-light); border: 2px solid var(--background-input); border-radius: 15px; padding: 30px 40px; width: 220px; cursor: pointer; transition: all 0.3s ease; }
+        .ai-choice-card:hover { transform: translateY(-10px); border-color: var(--primary-color); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .ai-choice-card h3 { margin-top: 0; font-size: 1.1em; height: 40px; }
+        .ai-choice-card .emoji { font-size: 2.5em; margin: 10px 0; }
+        .ai-choice-card .tag { font-size: 0.8em; font-weight: bold; color: white; padding: 3px 8px; border-radius: 5px; }
+        .ai-choice-card .vip-tag { background: linear-gradient(45deg, #a855f7, #d946ef); }
+        .ai-choice-card.vip-locked { opacity: 0.6; cursor: not-allowed; border-color: #444; }
+        .ai-choice-card.vip-locked:hover { transform: none; box-shadow: none; border-color: var(--error-color); }
+        #ai-choice-overlay h2 { color: white; margin-bottom: 30px; }
+        #admin-panel-overlay, #maintenance-overlay { /* ... (sem alterações) ... */ }
+        
+        /* --- ESTILOS PARA ADAPTAÇÃO MÓVEL --- */
+        body.device-mobile #chat-wrapper { width: 100vw; height: 100vh; max-height: none; border-radius: 0; }
+        body.device-mobile .chat-container { border-radius: 0; height: 100%; }
+        body.device-mobile .container { width: 90vw; padding: 40px 25px; }
+        body.device-mobile .header-title { font-size: 1.1em; }
+        body.device-mobile .chat-messages, body.device-mobile .chat-input { padding: 15px; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="no-select">
+
+    <div id="app-wrapper">
+        <div id="device-selector" class="container">
+            <h1>Como você está acessando?</h1>
+            <p style="margin-bottom: 25px; color: #ccc;">Sua escolha otimizará a interface.</p>
+            <button id="desktop-button" class="action-button">Computador</button>
+            <button id="mobile-button" class="action-button">Celular</button>
+        </div>
+
+        <div id="entry-container" class="container hidden">
+            <h1>Acesso ao Chat</h1>
+            <p style="margin-bottom: 25px; color: #ccc;">Identifique-se com seu Gmail para continuar.</p>
+            <div class="input-group">
+                <input type="text" id="entry-username-input" placeholder="Digite seu Gmail">
+            </div>
+            <button id="entry-button" class="action-button">Entrar</button>
+        </div>
+
+        <div id="chat-wrapper" class="hidden">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="header-info">
+                        <img src="data:image/jpeg;base64,...(sua imagem base64)..." alt="Logo Rk Hub" class="header-logo">
+                        <span class="header-title">Rk Hub | IA Oficial</span>
+                    </div>
+                    <button id="change-ai-btn">Trocar IA</button>
+                    <button id="logout-button">Sair</button>
+                </div>
+                <div class="chat-messages" id="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="message-input" placeholder="Converse com a Rk Hub | IA Oficial...">
+                    <button class="send-button" id="send-button">•</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="maintenance-overlay" class="container hidden">
+        <!-- ... (código da tela de manutenção sem alterações) ... -->
+    </div>
+    <div id="ai-choice-overlay" class="hidden">
+        <!-- ... (código do modal de escolha de IA sem alterações) ... -->
+    </div>
+    <div id="admin-panel-overlay" class="hidden">
+        <!-- ... (código do painel de administração sem alterações) ... -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- ELEMENTOS DO DOM ---
+            const appWrapper = document.getElementById('app-wrapper');
+            const deviceSelector = document.getElementById('device-selector');
+            const desktopButton = document.getElementById('desktop-button');
+            const mobileButton = document.getElementById('mobile-button');
+            const entryContainer = document.getElementById('entry-container');
+            const entryUsernameInput = document.getElementById('entry-username-input');
+            const entryButton = document.getElementById('entry-button');
+            const chatWrapper = document.getElementById('chat-wrapper');
+            const messageInput = document.getElementById('message-input');
+            const chatMessages = document.getElementById('chat-messages');
+            const sendButton = document.getElementById('send-button');
+            const logoutButton = document.getElementById('logout-button');
+            const changeAiBtn = document.getElementById('change-ai-btn');
+            const aiChoiceOverlay = document.getElementById('ai-choice-overlay');
+            const selectRkhubAiCard = document.getElementById('select-rkhub-ai');
+            const selectClaudeAiCard = document.getElementById('select-claude-ai');
+            const adminPanelOverlay = document.getElementById('admin-panel-overlay');
+            const closeAdminPanelBtn = document.getElementById('close-admin-panel');
+            const maintenanceOverlay = document.getElementById('maintenance-overlay');
+            const maintenanceMessage = document.getElementById('maintenance-message');
+            
+            // --- BASES DE DADOS SIMULADAS ---
+            const getFromStorage = (key, defaultValue) => JSON.parse(localStorage.getItem(key)) || defaultValue;
+            const saveToStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+            
+            let administrators = getFromStorage('administrators', ['blackvendasblk@gmail.com']);
+            let bannedUsers = getFromStorage('bannedUsers', []);
+            let vipUsers = getFromStorage('vipUsers', ['blackvendasblk@gmail.com']);
+            let siteStatus = getFromStorage('siteStatus', { status: 'online', message: '' });
+            let currentAI = 'rkhub';
+
+            // --- BASES DE CONHECIMENTO DAS IAs ---
+            const rkhubKnowledgeBase = { fallback: "Sou a IA lvl 1. Como posso ajudar?" };
+            const claudeKnowledgeBase = { fallback: "Sou a IA VIP. Sua pergunta é minha prioridade." };
+            
+            // --- FUNÇÕES DE ADMINISTRAÇÃO E VIP ---
+            const isCurrentUserAdmin = () => administrators.includes(localStorage.getItem('user'));
+            const isCurrentUserVip = () => vipUsers.includes(localStorage.getItem('user'));
+            // (O restante das funções de admin, como openAdminPanel, etc., devem ser incluídas aqui)
+
+            // --- FUNÇÕES DO CHAT E UI ---
+            function updateCurrentAiUI() {
+                const placeholder = currentAI === 'rkhub'
+                    ? 'Converse com Rk Hub | Chat ai lvl 1...'
+                    : 'Converse com Rk Hub | Chat ai ✨VIP✨...';
+                messageInput.placeholder = placeholder;
+            }
+            function openAiChoiceModal() {
+                selectClaudeAiCard.classList.toggle('vip-locked', !isCurrentUserVip());
+                aiChoiceOverlay.classList.remove('hidden');
+            }
+            function closeAiChoiceModal() { aiChoiceOverlay.classList.add('hidden'); }
+            function switchAI(aiName) {
+                if (aiName === 'claude' && !isCurrentUserVip()) {
+                    alert("Acesso Negado. Apenas usuários VIP podem usar esta assistente.");
+                    return;
+                }
+                if (currentAI === aiName) return;
+                currentAI = aiName;
+                saveToStorage('currentAI', currentAI);
+                updateCurrentAiUI();
+                const switchMessage = aiName === 'claude' ? "Você agora está usando a IA <b>✨VIP✨</b>." : "Você agora está usando a IA <b>lvl 1</b>.";
+                displayMessage(switchMessage, 'received');
+            }
+            function getBotResponse(userInput) {
+                const knowledgeBase = currentAI === 'claude' ? claudeKnowledgeBase : rkhubKnowledgeBase;
+                return knowledgeBase.fallback || "Não entendi, pode repetir?";
+            }
+            function displayMessage(content, type) {
+                const messageWrapper = document.createElement('div');
+                messageWrapper.classList.add('message', type);
+                const messageContent = document.createElement('div');
+                messageContent.classList.add('message-content');
+                messageContent.innerHTML = content;
+                messageWrapper.appendChild(messageWrapper);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            function handleSendMessage() {
+                const userText = messageInput.value.trim();
+                if (!userText) return;
+
+                if (userText.toLowerCase() === '/painel') {
+                    if (isCurrentUserAdmin()) { openAdminPanel(); } 
+                    else { displayMessage("<code>ACESSO NEGADO</code>: Comando exclusivo para administradores.", 'received'); }
+                    messageInput.value = '';
+                    return;
+                }
+                displayMessage(userText, 'sent');
+                messageInput.value = '';
+                setTimeout(() => {
+                    const botResponse = getBotResponse(userText);
+                    displayMessage(botResponse, 'received');
+                }, 800);
+            }
+
+            // --- FUNÇÕES DE LÓGICA PRINCIPAL (Navegação) ---
+            function showScreen(screen) {
+                [deviceSelector, entryContainer, chatWrapper].forEach(s => s.classList.add('hidden'));
+                if(screen) screen.classList.remove('hidden');
+            }
+            function setupChat() {
+                showScreen(chatWrapper);
+                currentAI = getFromStorage('currentAI', 'rkhub');
+                if (currentAI === 'claude' && !isCurrentUserVip()) {
+                    currentAI = 'rkhub';
+                    saveToStorage('currentAI', 'rkhub');
+                }
+                updateCurrentAiUI();
+                if (chatMessages.childElementCount === 0) {
+                    let welcomeMessage = "Olá! Seja bem-vindo(a).";
+                    if (isCurrentUserAdmin()) {
+                        welcomeMessage += "<br><b>Dica:</b> Digite <code>/Painel</code> para abrir o menu de admin.";
+                    } else if (isCurrentUserVip()) {
+                        welcomeMessage = "Olá, usuário <b>VIP</b>! Use o botão 'Trocar IA' para acessar sua assistente exclusiva.";
+                    }
+                    displayMessage(welcomeMessage, 'received');
+                }
+            }
+            function setupDevice(deviceType) {
+                document.body.classList.add(`device-${deviceType}`);
+                saveToStorage('deviceType', deviceType);
+                showScreen(entryContainer); // <-- Ponto chave: Após escolher o dispositivo, mostra a tela de login.
+            }
+            function handleEntry() {
+                const userIdentifier = entryUsernameInput.value.trim().toLowerCase();
+                if (!userIdentifier || !userIdentifier.includes('@')) {
+                    alert('Por favor, digite um Gmail válido para continuar.');
+                    return;
+                }
+                if (bannedUsers.includes(userIdentifier)) {
+                    alert('Este usuário foi banido do site.');
+                    return;
+                }
+                saveToStorage('user', userIdentifier);
+                saveToStorage('isLoggedIn', 'true');
+                setupChat(); // <-- Ponto chave: Após o login, mostra o chat.
+            }
+            function handleLogout() {
+                localStorage.clear();
+                location.reload();
+            }
+            
+            // --- INICIALIZAÇÃO DO SITE ---
+            function initializeSite() {
+                if (siteStatus.status !== 'online' && !isCurrentUserAdmin()) {
+                    appWrapper.classList.add('hidden');
+                    maintenanceMessage.textContent = siteStatus.message;
+                    maintenanceOverlay.classList.remove('hidden');
+                    return;
+                }
+                const savedDevice = getFromStorage('deviceType', null);
+                if (savedDevice) {
+                    document.body.classList.add(`device-${savedDevice}`);
+                    if (getFromStorage('isLoggedIn', 'true') === 'true') {
+                        setupChat();
+                    } else {
+                        showScreen(entryContainer);
+                    }
+                } else {
+                    showScreen(deviceSelector); // <-- Ponto chave: Se não houver dispositivo salvo, começa aqui.
+                }
+            }
+            
+            // --- EVENT LISTENERS ---
+            desktopButton.addEventListener('click', () => setupDevice('desktop'));
+            mobileButton.addEventListener('click', () => setupDevice('mobile'));
+            entryButton.addEventListener('click', handleEntry);
+            entryUsernameInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleEntry(); });
+            sendButton.addEventListener('click', handleSendMessage);
+            messageInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendMessage(); });
+            logoutButton.addEventListener('click', handleLogout);
+            changeAiBtn.addEventListener('click', openAiChoiceModal);
+            aiChoiceOverlay.addEventListener('click', (e) => { if (e.target === aiChoiceOverlay) closeAiChoiceModal(); });
+            selectRkhubAiCard.addEventListener('click', () => { switchAI('rkhub'); closeAiChoiceModal(); });
+            selectClaudeAiCard.addEventListener('click', () => { switchAI('claude'); closeAiChoiceModal(); });
+            
+            // (Listeners do painel admin devem ser adicionados aqui se o código completo não for colado)
+
+            initializeSite();
+        });
+    </script>
+</body>
+</html>
