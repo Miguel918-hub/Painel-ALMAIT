@@ -5,52 +5,79 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Painel ALMAIT</title>
 <style>
-:root{
-  --bg:#0b0d10;
-  --panel:#0f1218cc;
-  --text:#e6eaf2;
-  --muted:#94a3b8;
-  --ok:#22c55e;
-  --warn:#f59e0b;
-  --err:#ef4444;
-  --primary:#8b5cf6;
-  --primary-2:#22d3ee;
-  --primary-3:#f43f5e;
-  --primary-4:#22c55e;
-  --radius:18px;
-  --shadow:0 15px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
-}
-html,body{height:100%; margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;}
-body{
-  background: radial-gradient(1000px 600px at 80% -10%, rgba(139,92,246,.2), transparent 60%), 
-              radial-gradient(900px 500px at 10% 110%, rgba(34,211,238,.14), transparent 60%), var(--bg);
-  color:var(--text);
-}
-.wrap{ max-width:1100px; margin:40px auto; padding:0 20px; }
-.header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
-.brand{ display:flex; align-items:center; gap:14px; }
-.logo{ width:42px; height:42px; border-radius:14px; background: conic-gradient(from 210deg, var(--primary), #111 30%, var(--primary) 95%); }
-.title{ font-size:20px; font-weight:700; }
-.badge{ font-size:12px; color:#a5b4fc; background:rgba(139,92,246,.12); padding:6px 10px; border-radius:999px; }
-.card{ border-radius:var(--radius); background:var(--panel); padding:18px; margin-bottom:20px; }
-.controls{ display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
-.control{ border:1px solid rgba(148,163,184,.18); border-radius:14px; padding:14px; background:rgba(255,255,255,.02); }
-.control h4{ margin:0 0 10px; font-size:14px; display:flex; justify-content:space-between; align-items:center; }
-.switch{ position:relative; display:inline-block; width:42px; height:24px; }
-.switch input{ display:none; }
-.slider{ position:absolute; cursor:pointer; inset:0; background:#1f2430; border-radius:999px; transition:.25s; border:1px solid rgba(148,163,184,.25); }
-.slider:before{ content:""; position:absolute; height:18px; width:18px; left:3px; top:50%; transform:translateY(-50%); background:#fff; border-radius:50%; transition:.25s; box-shadow:0 2px 6px rgba(0,0,0,.35); }
-.switch input:checked + .slider{ background:linear-gradient(135deg, var(--primary), rgba(255,255,255,.08)); }
-.switch input:checked + .slider:before{ transform:translate(18px,-50%); }
-.row{ display:flex; justify-content:space-between; margin:10px 0 2px; }
-.actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; }
-.btn{ padding:12px 16px; border:none; border-radius:14px; font-weight:700; cursor:pointer; background:linear-gradient(135deg, var(--primary), rgba(255,255,255,.06)); color:#fff; }
-.btn-ghost{ background:rgba(255,255,255,.04); border:1px solid rgba(148,163,184,.25); color:#fff; }
-.status{ border:1px dashed rgba(148,163,184,.35); border-radius:14px; padding:14px; min-height:110px; margin-top:10px; overflow:auto; }
-.log{ font-family: monospace; font-size:12.5px; line-height:1.6; }
-.log .ok{ color:var(--ok); }
-.log .warn{ color:var(--warn); }
-.log .err{ color:var(--err); }
+  :root{
+    --bg:#0b0d10;
+    --panel:#0f1218cc;
+    --text:#e6eaf2;
+    --muted:#94a3b8;
+    --ok:#22c55e;
+    --warn:#f59e0b;
+    --err:#ef4444;
+    --primary:#8b5cf6;
+    --primary-2:#22d3ee;
+    --primary-3:#f43f5e;
+    --primary-4:#22c55e;
+    --radius:18px;
+    --shadow:0 15px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  html,body{height:100%; margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;}
+  body{
+    background: radial-gradient(1000px 600px at 80% -10%, rgba(139,92,246,.20), transparent 60%),
+                radial-gradient(900px 500px at 10% 110%, rgba(34,211,238,.14), transparent 60%), var(--bg);
+    color:var(--text);
+  }
+  .wrap{ max-width:1100px; margin:40px auto; padding:0 20px; }
+  .header{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:20px; }
+  .brand{ display:flex; align-items:center; gap:14px; }
+  .logo{ width:42px; height:42px; border-radius:14px; background: conic-gradient(from 210deg, var(--primary), #111 30%, var(--primary) 95%); box-shadow:0 10px 30px rgba(139,92,246,.35), inset 0 0 12px rgba(255,255,255,.08); position:relative; }
+  .logo:after{ content:""; position:absolute; inset:3px; border-radius:12px; background:rgba(255,255,255,.04); }
+  .title{ font-size:20px; font-weight:700; letter-spacing:.4px; }
+  .badge{ font-size:12px; color:#a5b4fc; background:rgba(139,92,246,.12); border:1px solid rgba(139,92,246,.35); padding:6px 10px; border-radius:999px; }
+  .card{ border-radius:var(--radius); background:var(--panel); box-shadow:var(--shadow); padding:18px; position:relative; overflow:hidden; }
+  .grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; }
+  @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
+  .section-title{ font-size:13px; text-transform:uppercase; letter-spacing:.18em; color:var(--muted); margin: 4px 0 14px; }
+  .controls{ display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
+  @media (max-width:600px){ .controls{ grid-template-columns:1fr; } }
+  .control{ border:1px solid rgba(148,163,184,.18); border-radius:14px; padding:14px; background:rgba(255,255,255,.02); }
+  .control h4{ margin:0 0 10px; font-size:14px; letter-spacing:.3px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .switch{ --w:42px; --h:24px; position:relative; display:inline-block; width:var(--w); height:var(--h); }
+  .switch input{ display:none; }
+  .slider{ position:absolute; cursor:pointer; inset:0; background:#1f2430; border-radius:999px; transition:.25s ease; border:1px solid rgba(148,163,184,.25); }
+  .slider:before{ content:""; position:absolute; height:18px; width:18px; left:3px; top:50%; transform:translateY(-50%); background:#fff; border-radius:50%; transition:.25s ease; box-shadow:0 2px 6px rgba(0,0,0,.35); }
+  .switch input:checked + .slider{ background:linear-gradient(135deg, var(--primary), rgba(255,255,255,.08)); }
+  .switch input:checked + .slider:before{ transform:translate(18px, -50%); }
+  .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin:10px 0 2px; }
+  .hint{ font-size:12px; color:var(--muted); }
+  input[type=range]{ -webkit-appearance:none; width:100%; height:8px; background:linear-gradient(90deg, var(--primary), rgba(255,255,255,.08)); border-radius:999px; outline:none; border:1px solid rgba(148,163,184,.25); }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:20px; height:20px; border-radius:50%; background:#fff; border:3px solid var(--primary); box-shadow:0 2px 8px rgba(0,0,0,.35); cursor:pointer; }
+  input[type=range]::-moz-range-thumb{ width:20px; height:20px; border-radius:50%; background:#fff; border:3px solid var(--primary); box-shadow:0 2px 8px rgba(0,0,0,.35); cursor:pointer; }
+  .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
+  .btn{ appearance:none; border:none; outline:none; cursor:pointer; padding:12px 16px; border-radius:14px; font-weight:700; letter-spacing:.3px; 
+        background:linear-gradient(135deg, var(--primary), rgba(255,255,255,.06)); color:white; box-shadow:0 12px 30px rgba(139,92,246,.35); border:1px solid rgba(139,92,246,.55);
+        transition:transform .08s ease, filter .2s ease; }
+  .btn:hover{ filter:brightness(1.08); }
+  .btn:active{ transform:translateY(1px); }
+  .btn-ghost{ background:rgba(255,255,255,.04); border:1px solid rgba(148,163,184,.25); box-shadow:none; font-weight:600; }
+  .status{ border-radius:14px; border:1px dashed rgba(148,163,184,.35); padding:14px; min-height:110px; background:rgba(17,20,28,.55); overflow:auto; }
+  .log{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12.5px; line-height:1.6; }
+  .log .ok{ color:var(--ok); }
+  .log .warn{ color:var(--warn); }
+  .log .err{ color:var(--err); }
+  .modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:22px; z-index:9999; }
+  .modal.open{ display:flex; }
+  .backdrop{ position:absolute; inset:0; background:rgba(3,6,12,.9); }
+  .dialog{ position:relative; width:min(820px,96vw); border-radius:22px; border:1px solid rgba(148,163,184,.22); background:linear-gradient(180deg, rgba(22,26,36,.95), rgba(12,15,20,.95)); box-shadow:0 15px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04); padding:20px; }
+  .dialog h3{ margin:0 0 8px; }
+  .codebox{ height:280px; border-radius:14px; border:1px solid rgba(148,163,184,.25); background:#0a0d12; padding:12px; overflow:auto; white-space:nowrap; }
+  .progress{ margin-top:12px; height:12px; border-radius:999px; background:#1f2430; border:1px solid rgba(148,163,184,.25); overflow:hidden; }
+  .bar{ height:100%; width:0%; background:linear-gradient(90deg, var(--primary), #fff); transition: width .25s ease; }
+  .toast{ position:fixed; right:18px; bottom:18px; min-width:220px; z-index:10000; display:none; }
+  .toast.show{ display:block; }
+  .toast .box{ border-radius:14px; padding:12px 14px; border:1px solid rgba(34,197,94,.5); background:rgba(34,197,94,.1); color:var(--ok); font-weight:700; box-shadow:0 10px 30px rgba(34,197,94,.2); }
+  .mini{ font-size:12px; color:var(--muted); margin-top:6px; }
+  .foot{ margin-top:14px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .disclaimer{ font-size:12px; color:var(--muted); }
 </style>
 </head>
 <body>
@@ -59,8 +86,8 @@ body{
     <div class="brand">
       <div class="logo"></div>
       <div>
-        <div class="title">Painel ALMAIT</div>
-        <div class="badge">100% Anti Ban • Garanta o VIP</div>
+        <div class="title">Painel ALMAIT <span class="mini">(GhostFoxOfcial)</span></div>
+        <div class="badge">100% Anti Ban • Garanta o VIP </div>
       </div>
     </div>
     <div class="actions">
@@ -69,95 +96,143 @@ body{
     </div>
   </div>
 
-  <div class="card">
-    <div class="section-title">Funções (FREE)</div>
-    <div class="controls">
-      <div class="control">
-        <h4>Aimbot
-          <label class="switch">
-            <input type="checkbox" id="aimbot">
-            <span class="slider"></span>
-          </label>
-        </h4>
-        <div class="row"><span>Sensibilidade</span><span id="aimbotVal">100</span></div>
-        <input type="range" id="aimbotRange" min="0" max="200" value="100">
+  <div class="grid">
+    <div class="card">
+      <div class="section-title">Funções (FREE)</div>
+      <div class="controls">
+        <div class="control">
+          <h4>Aimbot (30%)
+            <label class="switch">
+              <input type="checkbox" id="aimbot">
+              <span class="slider"></span>
+            </label>
+          </h4>
+          <div class="hint">Direciona a mira do jogador para os inimigos, garantindo que os disparos sempre acertem o alvo.</div>
+          <div class="row"><span>Sensibilidade</span><span id="aimbotVal">100</span></div>
+          <input type="range" id="aimbotRange" min="0" max="200" value="100">
+        </div>
+        <div class="control">
+          <h4>FOV
+            <label class="switch">
+              <input type="checkbox" id="fov">
+              <span class="slider"></span>
+            </label>
+          </h4>
+          <div class="hint">Círculo de FOV para visualização</div>
+          <div class="row"><span>Ângulo</span><span id="fovVal">90</span></div>
+          <input type="range" id="fovRange" min="0" max="200" value="90">
+        </div>
+        <div class="control">
+          <h4>No Recoil
+            <label class="switch">
+              <input type="checkbox" id="norecoil">
+              <span class="slider"></span>
+            </label>
+          </h4>
+          <div class="hint">Anula o movimento da mira e da câmera.</div>
+          <div class="row"><span>Estabilidade</span><span id="recoilVal">120</span></div>
+          <input type="range" id="recoilRange" min="0" max="200" value="120">
+        </div>
+        <div class="control">
+          <h4>Suavização
+            <label class="switch">
+              <input type="checkbox" id="smooth">
+              <span class="slider"></span>
+            </label>
+          </h4>
+          <div class="hint">Ajuste de suavização da mira</div>
+          <div class="row"><span>Nível</span><span id="smoothVal">80</span></div>
+          <input type="range" id="smoothRange" min="0" max="200" value="80">
+        </div>
       </div>
-
-      <div class="control">
-        <h4>FOV
-          <label class="switch">
-            <input type="checkbox" id="fov">
-            <span class="slider"></span>
-          </label>
-        </h4>
-        <div class="row"><span>Ângulo</span><span id="fovVal">90</span></div>
-        <input type="range" id="fovRange" min="0" max="200" value="90">
-      </div>
-
-      <div class="control">
-        <h4>No Recoil
-          <label class="switch">
-            <input type="checkbox" id="norecoil">
-            <span class="slider"></span>
-          </label>
-        </h4>
-        <div class="row"><span>Estabilidade</span><span id="recoilVal">120</span></div>
-        <input type="range" id="recoilRange" min="0" max="200" value="120">
-      </div>
-
-      <div class="control">
-        <h4>Suavização
-          <label class="switch">
-            <input type="checkbox" id="smooth">
-            <span class="slider"></span>
-          </label>
-        </h4>
-        <div class="row"><span>Nível</span><span id="smoothVal">80</span></div>
-        <input type="range" id="smoothRange" min="0" max="200" value="80">
+      <div class="actions" style="margin-top:16px">
+        <button id="inject" class="btn">Injetar</button>
+        <button id="export" class="btn-ghost">Exportar preset</button>
       </div>
     </div>
-
-    <div class="actions">
-      <button id="inject" class="btn">Injetar</button>
-      <button id="export" class="btn-ghost">Exportar preset</button>
+    <div class="card">
+      <div class="section-title">Status</div>
+      <div class="status"><div id="log" class="log"></div></div>
+      <div class="foot"><span class="disclaimer">Garanta o VIP bem mais forte.</span></div>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">Status</div>
-    <div class="status"><div id="log" class="log"></div></div>
   </div>
 </div>
 
+<div class="modal" id="modal">
+  <div class="backdrop"></div>
+  <div class="dialog">
+    <h3>Aplicando configurações</h3>
+    <div class="codebox" id="codebox"></div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div class="actions" style="margin-top:12px"><button class="btn-ghost" id="closeModal">Cancelar</button></div>
+    <div class="mini">Entrando dentro da System Garena Free Fire...</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><div class="box">Ativado com sucesso</div></div>
+
 <script>
-const $=s=>document.querySelector(s);
-const log=(txt,cls='')=>{$('#log').prepend(Object.assign(document.createElement('div'),{innerHTML:`<span class="${cls}">» ${txt}</span>`}))};
+const $ = s => document.querySelector(s);
+const log = (txt, cls='') => { const line = document.createElement('div'); line.innerHTML = `<span class="${cls}">» ${txt}</span>`; $('#log').prepend(line); };
+const toast = (msg) => { const t = $('#toast'); t.querySelector('.box').textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2000); };
+$('#theme').addEventListener('click',()=>{ document.documentElement.style.setProperty('--primary', document.documentElement.style.getPropertyValue('--primary-2')); });
+$('#reset').addEventListener('click',()=>{
+  document.documentElement.style.setProperty('--primary','#8b5cf6');
+  ['aimbot','fov','norecoil','smooth'].forEach(id=>$('#'+id).checked=false);
+  ['aimbotRange','fovRange','recoilRange','smoothRange'].forEach((id,i)=>{ $('#'+id).value=[100,90,120,80][i]; });
+  ['aimbotVal','fovVal','recoilVal','smoothVal'].forEach((id,i)=>{ $('#'+id).textContent=[100,90,120,80][i]; });
+  $('#log').innerHTML=''; toast('Preset resetado');
+});
 
-const bindRange=(rangeId,outId,label)=>{ const r=$(rangeId),o=$(outId); r.addEventListener('input',()=>o.textContent=r.value); r.addEventListener('change',()=>log(`${label} ajustado para ${r.value}`,'ok'));};
-bindRange('#aimbotRange','#aimbotVal','Sensibilidade');
-bindRange('#fovRange','#fovVal','Ângulo de FOV');
-bindRange('#recoilRange','#recoilVal','Estabilidade');
-bindRange('#smoothRange','#smoothVal','Suavização');
+const bindRange = (rangeId,outId,label)=>{ const r=$('#'+rangeId),o=$('#'+outId); r.addEventListener('input',()=>{ o.textContent=r.value; }); r.addEventListener('change',()=>{ log(`${label} ajustado para ${r.value}`,'ok'); }); };
+bindRange('aimbotRange','aimbotVal','Sensibilidade');
+bindRange('fovRange','fovVal','Ângulo de FOV');
+bindRange('recoilRange','recoilVal','Estabilidade');
+bindRange('smoothRange','smoothVal','Suavização');
 
-const bindToggle=(id,name)=>{$(id).addEventListener('change',e=>{log(`${name} ${(e.target.checked?'ativado':'desativado')}`,e.target.checked?'ok':'warn');});};
-bindToggle('#aimbot','Aimbot');
-bindToggle('#fov','FOV');
-bindToggle('#norecoil','No Recoil');
-bindToggle('#smooth','Suavização');
+const bindToggle=(id,name)=>{$('#'+id).addEventListener('change',e=>{if(e.target.checked){log(`${name} ativado`,'ok'); toast(`${name} ativado`);}else{log(`${name} desativado`,'warn');}})};
+bindToggle('aimbot','Aimbot (visual)');
+bindToggle('fov','FOV (visual)');
+bindToggle('norecoil','No Recoil (visual)');
+bindToggle('smooth','Suavização');
 
-$('#inject').addEventListener('click',()=>log('Injeção concluída com sucesso','ok'));
-$('#export').addEventListener('click',()=>{ navigator.clipboard.writeText(JSON.stringify({
-  aimbot:$('#aimbot').checked,
-  sens:$('#aimbotRange').value,
-  fov:$('#fov').checked,
-  angle:$('#fovRange').value,
-  recoil:$('#norecoil').checked,
-  stab:$('#recoilRange').value,
-  smooth:$('#smooth').checked,
-  level:$('#smoothRange').value
-},null,2)); log('Preset copiado para clipboard','ok');});
-$('#reset').addEventListener('click',()=>{['aimbot','fov','norecoil','smooth'].forEach(id=>$(id).checked=false);['aimbotRange','fovRange','recoilRange','smoothRange'].forEach((id,i)=>$(id).value=[100,90,120,80][i]);['aimbotVal','fovVal','recoilVal','smoothVal'].forEach((id,i)=>$(id).textContent=[100,90,120,80][i]); log('Preset resetado','warn');});
-$('#theme').addEventListener('click',()=>{document.documentElement.style.setProperty('--primary','#22d3ee');});
+const encryptedChunk=()=>{ const chars='0123456789abcdef'; const randHex=n=>Array.from({length:n},()=>chars[Math.floor(Math.random()*chars.length)]).join(''); return `0x${randHex(8)} :: ${randHex(32)} :: ${randHex(16)}`; };
+
+let injectAbort=false;
+$('#inject').addEventListener('click',()=>{
+  injectAbort=false;
+  $('#modal').classList.add('open');
+  $('#codebox').innerHTML=''; $('#bar').style.width='0%';
+  let i=0,max=22;
+  const step=()=>{
+    if(injectAbort) return;
+    if(i<max){
+      const line=document.createElement('div'); line.className='code-line'; line.textContent=encryptedChunk();
+      $('#codebox').append(line);
+      $('#codebox').scrollTop=$('#codebox').scrollHeight;
+      i++;
+      $('#bar').style.width=((i/max)*100)+'%';
+      setTimeout(step,160);
+    }else{
+      log('Injeção concluída com sucesso','ok');
+      toast('Injeção concluída');
+      $('#modal').classList.remove('open');
+    }
+  };
+  step();
+});
+$('#closeModal').addEventListener('click',()=>{ injectAbort=true; $('#modal').classList.remove('open'); log('Injeção cancelada','warn'); });
+
+$('#export').addEventListener('click',()=>{
+  const preset={
+    aimbot:$('#aimbot').checked, sens:$('#aimbotRange').value,
+    fov:$('#fov').checked, angle:$('#fovRange').value,
+    recoil:$('#norecoil').checked, stab:$('#recoilRange').value,
+    smooth:$('#smooth').checked, level:$('#smoothRange').value
+  };
+  navigator.clipboard.writeText(JSON.stringify(preset,null,2));
+  log('Preset copiado para clipboard','ok'); toast('Preset exportado');
+});
 </script>
 </body>
 </html>
