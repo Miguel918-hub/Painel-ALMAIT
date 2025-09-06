@@ -13,10 +13,10 @@
     --ok:#22c55e;
     --warn:#f59e0b;
     --err:#ef4444;
-    --primary:#8b5cf6; /* roxo inicial */
-    --primary-2:#22d3ee; /* ciano */
-    --primary-3:#f43f5e; /* rosa */
-    --primary-4:#22c55e; /* verde */
+    --primary:#8b5cf6;
+    --primary-2:#22d3ee;
+    --primary-3:#f43f5e;
+    --primary-4:#22c55e;
     --radius:18px;
     --shadow:0 15px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
     --glass:backdrop-filter: blur(10px) saturate(140%);
@@ -38,28 +38,22 @@
   .card{ border-radius:var(--radius); background:var(--panel); box-shadow:var(--shadow); padding:18px; position:relative; overflow:hidden; }
   .grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; }
   @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
-
   .section-title{ font-size:13px; text-transform:uppercase; letter-spacing:.18em; color:var(--muted); margin: 4px 0 14px; }
-
   .controls{ display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
   @media (max-width:600px){ .controls{ grid-template-columns:1fr; } }
   .control{ border:1px solid rgba(148,163,184,.18); border-radius:14px; padding:14px; background:rgba(255,255,255,.02); }
   .control h4{ margin:0 0 10px; font-size:14px; letter-spacing:.3px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
-
   .switch{ --w:42px; --h:24px; position:relative; display:inline-block; width:var(--w); height:var(--h); }
   .switch input{ display:none; }
   .slider{ position:absolute; cursor:pointer; inset:0; background:#1f2430; border-radius:999px; transition:.25s ease; border:1px solid rgba(148,163,184,.25); }
   .slider:before{ content:""; position:absolute; height:18px; width:18px; left:3px; top:50%; transform:translateY(-50%); background:#fff; border-radius:50%; transition:.25s ease; box-shadow:0 2px 6px rgba(0,0,0,.35); }
   .switch input:checked + .slider{ background:linear-gradient(135deg, var(--primary), rgba(255,255,255,.08)); }
   .switch input:checked + .slider:before{ transform:translate(18px, -50%); }
-
   .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin:10px 0 2px; }
   .hint{ font-size:12px; color:var(--muted); }
-
   input[type=range]{ -webkit-appearance:none; width:100%; height:8px; background:linear-gradient(90deg, var(--primary), rgba(255,255,255,.08)); border-radius:999px; outline:none; border:1px solid rgba(148,163,184,.25); }
   input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:20px; height:20px; border-radius:50%; background:#fff; border:3px solid var(--primary); box-shadow:0 2px 8px rgba(0,0,0,.35); cursor:pointer; }
   input[type=range]::-moz-range-thumb{ width:20px; height:20px; border-radius:50%; background:#fff; border:3px solid var(--primary); box-shadow:0 2px 8px rgba(0,0,0,.35); cursor:pointer; }
-
   .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
   .btn{ appearance:none; border:none; outline:none; cursor:pointer; padding:12px 16px; border-radius:14px; font-weight:700; letter-spacing:.3px; 
         background:linear-gradient(135deg, var(--primary), rgba(255,255,255,.06)); color:white; box-shadow:0 12px 30px rgba(139,92,246,.35); border:1px solid rgba(139,92,246,.55);
@@ -67,13 +61,11 @@
   .btn:hover{ filter:brightness(1.08); }
   .btn:active{ transform:translateY(1px); }
   .btn-ghost{ background:rgba(255,255,255,.04); border:1px solid rgba(148,163,184,.25); box-shadow:none; font-weight:600; }
-
   .status{ border-radius:14px; border:1px dashed rgba(148,163,184,.35); padding:14px; min-height:110px; background:rgba(17,20,28,.55); overflow:auto; }
   .log{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12.5px; line-height:1.6; }
   .log .ok{ color:var(--ok); }
   .log .warn{ color:var(--warn); }
   .log .err{ color:var(--err); }
-
   .modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:22px; z-index:999; }
   .modal.open{ display:flex; }
   .backdrop{ position:absolute; inset:0; background:rgba(3,6,12,.8); }
@@ -83,12 +75,10 @@
   .code-line{ color:#a3bffa; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12.5px; white-space:nowrap; }
   .progress{ margin-top:12px; height:12px; border-radius:999px; background:#1f2430; border:1px solid rgba(148,163,184,.25); overflow:hidden; }
   .bar{ height:100%; width:0%; background:linear-gradient(90deg, var(--primary), #fff); transition: width .25s ease; }
-
   .toast{ position:fixed; right:18px; bottom:18px; min-width: 220px; z-index:1000; display:none; }
   .toast.show{ display:block; }
   .toast .box{ border-radius:14px; padding:12px 14px; border:1px solid rgba(34,197,94,.5); background:rgba(34,197,94,.1); color:var(--ok); font-weight:700; box-shadow:0 10px 30px rgba(34,197,94,.2); }
   .mini{ font-size:12px; color:var(--muted); margin-top:6px; }
-
   .foot{ margin-top:14px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
   .disclaimer{ font-size:12px; color:var(--muted); }
 </style>
@@ -99,7 +89,7 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <div class="title">Painel ALMAIT <span class="mini">(MTZ 07)</span></div>
+          <div class="title">Painel ALMAIT <span class="mini">(GhostFoxOfcial)</span></div>
           <div class="badge">100% Anti Ban • Garanta o VIP </div>
         </div>
       </div>
@@ -124,7 +114,6 @@
             <div class="row"><span>Sensibilidade</span><span id="aimbotVal">100</span></div>
             <input type="range" id="aimbotRange" min="0" max="200" value="100">
           </div>
-
           <div class="control">
             <h4>FOV 
               <label class="switch">
@@ -136,7 +125,6 @@
             <div class="row"><span>Ângulo</span><span id="fovVal">90</span></div>
             <input type="range" id="fovRange" min="0" max="200" value="90">
           </div>
-
           <div class="control">
             <h4>No Recoil 
               <label class="switch">
@@ -148,7 +136,6 @@
             <div class="row"><span>Estabilidade</span><span id="recoilVal">120</span></div>
             <input type="range" id="recoilRange" min="0" max="200" value="120">
           </div>
-
           <div class="control">
             <h4>Suavização
               <label class="switch">
@@ -161,184 +148,80 @@
             <input type="range" id="smoothRange" min="0" max="200" value="80">
           </div>
         </div>
-
         <div class="actions" style="margin-top:16px">
           <button id="inject" class="btn">Injetar </button>
           <button id="export" class="btn-ghost">Exportar preset</button>
         </div>
       </div>
-
       <div class="card">
         <div class="section-title">Status</div>
-        <div class="status">
-          <div id="log" class="log"></div>
-        </div>
-        <div class="foot">
-          <span class="disclaimer">Garanta o VIP bem mais forte.</span>
-        </div>
+        <div class="status"><div id="log" class="log"></div></div>
+        <div class="foot"><span class="disclaimer">Garanta o VIP bem mais forte.</span></div>
       </div>
     </div>
   </div>
 
-  <!-- Modal de "Injeção" (somente visual) -->
   <div class="modal" id="modal">
     <div class="backdrop"></div>
     <div class="dialog">
       <h3>Aplicando configurações </h3>
       <div class="codebox" id="codebox"></div>
       <div class="progress"><div class="bar" id="bar"></div></div>
-      <div class="actions" style="margin-top:12px">
-        <button class="btn-ghost" id="closeModal">Cancelar</button>
-      </div>
+      <div class="actions" style="margin-top:12px"><button class="btn-ghost" id="closeModal">Cancelar</button></div>
       <div class="mini">Entrando dentro da System Garena Free Fire...</div>
     </div>
   </div>
-
   <div class="toast" id="toast"><div class="box">Ativado com sucesso</div></div>
 
 <script>
-  // Utilidades
   const $ = s => document.querySelector(s);
-  const log = (txt, cls='') => {
-    const line = document.createElement('div');
-    line.innerHTML = `<span class="${cls}">» ${txt}</span>`;
-    $('#log').prepend(line);
-  };
-  const toast = (msg) => {
-    const t = $('#toast');
-    t.querySelector('.box').textContent = msg;
-    t.classList.add('show');
-    setTimeout(()=>t.classList.remove('show'), 2000);
-  };
-
-  // Troca de cor (tema)
-  const themes = ['--primary','#8b5cf6','--primary-2','#22d3ee','--primary-3','#f43f5e','--primary-4','#22c55e'];
-  let themeIndex = 0;
-  $('#theme').addEventListener('click', () => {
-    themeIndex = (themeIndex + 2) % themes.length; // avança par a par (token, valor)
-    document.documentElement.style.setProperty('--primary', themes[themeIndex+1]);
-  });
-
-  // Reset
+  const log = (txt, cls='') => { const line = document.createElement('div'); line.innerHTML = `<span class="${cls}">» ${txt}</span>`; $('#log').prepend(line); };
+  const toast = (msg) => { const t = $('#toast'); t.querySelector('.box').textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); };
+  const themes = ['--primary','#8b5cf6','--primary-2','#22d3ee','--primary-3','#f43f5e','--primary-4','#22c55e']; let themeIndex = 0;
+  $('#theme').addEventListener('click', () => { themeIndex = (themeIndex + 2) % themes.length; document.documentElement.style.setProperty('--primary', themes[themeIndex+1]); });
   $('#reset').addEventListener('click', () => {
     document.documentElement.style.setProperty('--primary', '#8b5cf6');
     ['aimbot','fov','norecoil','smooth'].forEach(id=>{ const el=$('#'+id); if(el.checked){ el.checked=false; }});
-    ['aimbotRange','fovRange','recoilRange','smoothRange'].forEach((id,i)=>{
-      const defaults=[100,90,120,80];
-      $('#'+id).value = defaults[i];
-    });
-    ['aimbotVal','fovVal','recoilVal','smoothVal'].forEach((id,i)=>{
-      const defaults=[100,90,120,80];
-      $('#'+id).textContent = defaults[i];
-    });
-    $('#log').innerHTML = '';
-    toast('Preset resetado');
+    ['aimbotRange','fovRange','recoilRange','smoothRange'].forEach((id,i)=>{ const defaults=[100,90,120,80]; $('#'+id).value = defaults[i]; });
+    ['aimbotVal','fovVal','recoilVal','smoothVal'].forEach((id,i)=>{ const defaults=[100,90,120,80]; $('#'+id).textContent = defaults[i]; });
+    $('#log').innerHTML = ''; toast('Preset resetado');
   });
-
-  // Sliders → valores
-  const bindRange = (rangeId, outId, label) => {
-    const r = $('#'+rangeId), o = $('#'+outId);
-    r.addEventListener('input', ()=>{ o.textContent = r.value; });
-    r.addEventListener('change', ()=>{ log(`${label} ajustado para ${r.value}`, 'ok'); });
-  };
+  const bindRange = (rangeId, outId, label) => { const r = $('#'+rangeId), o = $('#'+outId); r.addEventListener('input', ()=>{ o.textContent = r.value; }); r.addEventListener('change', ()=>{ log(`${label} ajustado para ${r.value}`, 'ok'); }); };
   bindRange('aimbotRange','aimbotVal','Sensibilidade');
   bindRange('fovRange','fovVal','Ângulo de FOV');
   bindRange('recoilRange','recoilVal','Estabilidade');
   bindRange('smoothRange','smoothVal','Suavização');
-
-  // Switches → logs
-  const bindToggle = (id, name) => {
-    $('#'+id).addEventListener('change', (e)=>{
-      if(e.target.checked){ log(`${name} ativado`, 'ok'); toast(`${name} ativado`); }
-      else{ log(`${name} desativado`, 'warn'); }
-    });
-  };
+  const bindToggle = (id, name) => { $('#'+id).addEventListener('change', (e)=>{ if(e.target.checked){ log(`${name} ativado`, 'ok'); toast(`${name} ativado`); } else{ log(`${name} desativado`, 'warn'); } }); };
   bindToggle('aimbot','Aimbot (visual)');
   bindToggle('fov','FOV (visual)');
   bindToggle('norecoil','No Recoil (visual)');
   bindToggle('smooth','Suavização');
-
-  // Modal de "injeção" (apenas visual)
-  const encryptedChunk = () => {
-    const chars = '0123456789abcdef';
-    const randHex = (n) => Array.from({length:n},()=>chars[Math.floor(Math.random()*chars.length)]).join('');
-    return `0x${randHex(8)} :: ${randHex(32)} :: ${randHex(16)}`;
-  };
-
+  const encryptedChunk = () => { const chars = '0123456789abcdef'; const randHex = (n) => Array.from({length:n},()=>chars[Math.floor(Math.random()*chars.length)]).join(''); return `0x${randHex(8)} :: ${randHex(32)} :: ${randHex(16)}`; };
   let injectAbort = false;
-
   $('#inject').addEventListener('click', ()=>{
     injectAbort = false;
     $('#modal').classList.add('open');
-    const box = $('#codebox'); box.innerHTML='';
-    $('#bar').style.width = '0%';
-
-    // Gera linhas falsas de "código"
-    let lines = 0;
-    const addLine = () => { const d=document.createElement('div'); d.className='code-line'; d.textContent = encryptedChunk(); box.appendChild(d); box.scrollTop = box.scrollHeight; };
-
-    const codeTimer = setInterval(()=>{ if(injectAbort) return clearInterval(codeTimer); addLine(); lines++; if(lines>120) clearInterval(codeTimer); }, 20);
-
-    // Progresso controlado
-    let p = 0;
-    const progTimer = setInterval(()=>{
-      if(injectAbort){ clearInterval(progTimer); return; }
-      p += Math.random()*6 + 2; // avança 2-8%
-      if(p>100) p=100;
-      $('#bar').style.width = p.toFixed(1) + '%';
-      if(p>=100){
-        clearInterval(progTimer);
-        setTimeout(()=>{
-          $('#modal').classList.remove('open');
-          toast('Painel ativado com sucesso');
-          log('Painel ativado com sucesso', 'ok');
-          // Voz: usa SpeechSynthesis (navegador)
-          try{
-            const phrase = new SpeechSynthesisUtterance('Painel ativado com sucesso');
-            phrase.lang = 'pt-BR';
-            // tenta voz masculina se existir
-            const pickVoice = () => {
-              const voices = speechSynthesis.getVoices();
-              const male = voices.find(v=> /pt-BR/i.test(v.lang) && /(male|brasil|ricardo|daniel)/i.test(v.name));
-              phrase.voice = male || voices.find(v=>/pt-BR/i.test(v.lang)) || null;
-              speechSynthesis.speak(phrase);
-            };
-            const vs = speechSynthesis.getVoices();
-            if(!vs || vs.length===0){ speechSynthesis.onvoiceschanged = pickVoice; }
-            else{ pickVoice(); }
-          }catch(err){ console.warn('speech error', err); }
-        }, 350);
-      }
-    }, 120);
-  });
-
-  $('#closeModal').addEventListener('click', ()=>{ injectAbort = true; $('#modal').classList.remove('open'); });
-
-  // Exportar preset (json)
-  $('#export').addEventListener('click', ()=>{
-    const data = {
-      aimbot: $('#aimbot').checked,
-      fov: $('#fov').checked,
-      norecoil: $('#norecoil').checked,
-      smooth: $('#smooth').checked,
-      aimbotVal: +$('#aimbotRange').value,
-      fovVal: +$('#fovRange').value,
-      recoilVal: +$('#recoilRange').value,
-      smoothVal: +$('#smoothRange').value,
-      theme: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()
+    $('#codebox').innerHTML = ''; $('#bar').style.width='0%';
+    let i=0, max=22;
+    const step=()=>{ if(injectAbort) return;
+      if(i<max){ const line = document.createElement('div'); line.className='code-line'; line.textContent = encryptedChunk(); $('#codebox').append(line); $('#codebox').scrollTop = $('#codebox').scrollHeight; i++; $('#bar').style.width = ((i/max)*100)+'%'; setTimeout(step, 160); }
+      else{ log('Injeção concluída com sucesso','ok'); toast('Injeção concluída'); $('#modal').classList.remove('open'); }
     };
-    const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'preset-demo.json'; a.click();
-    URL.revokeObjectURL(url);
+    step();
+  });
+  $('#closeModal').addEventListener('click', ()=>{ injectAbort=true; $('#modal').classList.remove('open'); log('Injeção cancelada','warn'); });
+  $('#export').addEventListener('click', ()=>{
+    const preset = {
+      aimbot: $('#aimbot').checked, sens: $('#aimbotRange').value,
+      fov: $('#fov').checked, angle: $('#fovRange').value,
+      recoil: $('#norecoil').checked, stab: $('#recoilRange').value,
+      smooth: $('#smooth').checked, level: $('#smoothRange').value
+    };
+    const str = JSON.stringify(preset,null,2);
+    navigator.clipboard.writeText(str);
+    log('Preset copiado para clipboard','ok');
     toast('Preset exportado');
   });
-
-  // Mensagem inicial
-  log('Pronto. Ajuste as opções e clique em Injetar.', 'ok');
 </script>
 </body>
 </html>
-
-
